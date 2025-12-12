@@ -1,14 +1,11 @@
 import Head from "next/head";
 import { useState } from "react"; //React Hook for State
+import Link from "next/link";
 
-// MUI Imports
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import { Box, Button, ThemeProvider } from "@mui/material";
+import MyAppBar from "@/components/common/MyAppBar";
+
+import { theme, darkTheme } from "@/styles/mui/theme";
 
 export default function Home() {
   const [visible, setVisible] = useState(false); // Always call hooks at the top of the function.
@@ -43,43 +40,26 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>The Movie Lovers Club | Your Favourite Movie Articles!</title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Box>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" component="Box" sx={{ flexGrow: 1 }}>
-                News
-              </Typography>
-              <Button color="inherit">Login</Button>
-            </Toolbar>
-          </AppBar>
-        </Box>
-        
-        <Button onClick={() => setVisible(!visible)}>Toggle</Button>
-        
-        <Box height="20px" />
+      <ThemeProvider theme={darkTheme}>
+        <Head>
+          <title>The Movie Lovers Club | Your Favourite Movie Articles!</title>
+          <meta name="description" content="" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <MyAppBar />
+        <Box>
+          <Button onClick={() => setVisible(!visible)}>Toggle</Button>
 
-        {visible ? (
-          <Box height="200px" sx={{ background: "pink", width: "500px" }} />
-        ) : (
-          <></>
-        )}
-      </Box>
+          <Box height="20px" />
+
+          {visible ? (
+            <Box height="200px" sx={{ background: "pink", width: "500px" }} />
+          ) : (
+            <></>
+          )}
+        </Box>
+      </ThemeProvider>
     </>
   );
 }
