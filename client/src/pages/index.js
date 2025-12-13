@@ -2,13 +2,15 @@ import Head from "next/head";
 import { useState } from "react"; //React Hook for State
 import Link from "next/link";
 
-import { Box, Button, ThemeProvider } from "@mui/material";
+import { Box, Button, CssBaseline, ThemeProvider } from "@mui/material";
+
 import MyAppBar from "@/components/common/MyAppBar";
 
 import { theme, darkTheme } from "@/styles/mui/theme";
 
 export default function Home() {
   const [visible, setVisible] = useState(false); // Always call hooks at the top of the function.
+  const [currentTheme, setCurrentTheme] = useState("light");
 
   const movies = [
     {
@@ -40,14 +42,18 @@ export default function Home() {
 
   return (
     <>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={currentTheme === "dark" ? darkTheme : theme}>
+        <CssBaseline />
         <Head>
           <title>The Movie Lovers Club | Your Favourite Movie Articles!</title>
           <meta name="description" content="" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <MyAppBar />
+        <MyAppBar
+          currentTheme={currentTheme}
+          setCurrentTheme={setCurrentTheme}
+        />
         <Box>
           <Button onClick={() => setVisible(!visible)}>Toggle</Button>
 

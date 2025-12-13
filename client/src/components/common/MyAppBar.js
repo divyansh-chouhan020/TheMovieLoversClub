@@ -9,17 +9,22 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { darkTheme, theme } from "@/styles/mui/theme";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+// import { CssBaseline, ThemeProvider } from "@mui/material";
 
-export default function MyAppBar() {
-  const [currentTheme, setCurrentTheme] = useState("dark");
+
+// Icons
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+
+// import { darkTheme, theme } from "@/styles/mui/theme";
+
+export default function MyAppBar(props) {
+  // const [currentTheme, setCurrentTheme] = useState("dark");
 
   return (
     <>
-      <ThemeProvider theme={currentTheme === "dark" ? darkTheme : theme}>
-        <CssBaseline />
+      {/* <ThemeProvider theme={currentTheme === "dark" ? darkTheme : theme}> */}
+        {/* <CssBaseline /> */}
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" color="primary">
             <Toolbar>
@@ -42,10 +47,10 @@ export default function MyAppBar() {
                 aria-label="menu"
                 sx={{ mr: 2 }}
                 onClick={() =>
-                  setCurrentTheme(currentTheme === "dark" ? "light" : "dark")
+                  props.setCurrentTheme(props.currentTheme === "dark" ? "light" : "dark")
                 }
               >
-                <DarkModeIcon />
+                {props.currentTheme === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
               <Link href="/blog">
                 <Button color="inherit">Blog</Button>
@@ -54,7 +59,7 @@ export default function MyAppBar() {
             </Toolbar>
           </AppBar>
         </Box>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </>
   );
 }
