@@ -73,7 +73,7 @@ export default function Home() {
         />
         <Box>
           <Container>
-            <Button onClick={() => setVisible(!visible)}>Toggle</Button>
+            {/* <Button onClick={() => setVisible(!visible)}>Toggle</Button>
 
             <Box height="20px" />
 
@@ -81,7 +81,7 @@ export default function Home() {
               <Box height="200px" sx={{ background: "pink", width: "500px" }} />
             ) : (
               <></>
-            )}
+            )} */}
 
             <Grid container spacing={2} direction="row" justifyContent="center">
               <Grid size={4}>

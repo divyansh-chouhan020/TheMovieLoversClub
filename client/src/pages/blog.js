@@ -1,19 +1,42 @@
-import MyAppBar from "@/components/common/MyAppBar";
 import Head from "next/head";
+import { useState } from "react"; //React Hook for State
 
-export default function Blog() {
+// Material
+import {
+  Box,
+  CssBaseline,
+  ThemeProvider,
+} from "@mui/material";
+import { useTheme } from "@mui/material";
+
+
+import MyAppBar from "@/components/common/MyAppBar";
+
+import { lightTheme, darkTheme } from "@/styles/mui/theme";
+
+export default function Home() {
+  const [currentTheme, setCurrentTheme] = useState("light");
+
+  const theme = useTheme();
+
   return (
     <>
-      <Head>
-        <title>Blog | The Movie Lovers Club</title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <MyAppBar /> 
-      <div>
-        Blog
-      </div>
+      <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
+        <CssBaseline />
+        <Head>
+          <title>Blog | The Movie Lovers Club | Your Favourite Movie Articles!</title>
+          <meta name="description" content="" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <MyAppBar
+          currentTheme={currentTheme}
+          setCurrentTheme={setCurrentTheme}
+        />
+        <Box>
+
+        </Box>
+      </ThemeProvider>
     </>
   );
 }
