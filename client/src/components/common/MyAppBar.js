@@ -45,7 +45,7 @@ export default function MyAppBar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="Box" sx={{ flexGrow: 1 }}>
-              News
+              The Movie Lovers Club
             </Typography>
             <IconButton
               size="large"
@@ -57,6 +57,9 @@ export default function MyAppBar() {
             >
               {currentTheme === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
             </IconButton>
+            <Link href="/">
+              <Button sx={{ color: theme.palette.icon.main }}>Home</Button>
+            </Link>
             <Link href="/blog">
               <Button sx={{ color: theme.palette.icon.main }}>Blog</Button>
             </Link>

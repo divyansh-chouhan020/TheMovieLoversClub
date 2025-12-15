@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react"; //React Hook for State
+import { useEffect, useState } from "react"; //React Hook for State
 
 // Material
 import {
@@ -21,8 +21,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectTheme, getActiveTheme } from "@/redux/reducers/themeReducer";
 
 export default function Home() {
-const dispatch = useDispatch();
-const currentTheme = useSelector(selectTheme).activeTheme;
+  const dispatch = useDispatch();
+  const currentTheme = useSelector(selectTheme).activeTheme;
+
+  useEffect(() => {
+    dispatch(getActiveTheme()); // To get theme from Cookie
+  }, []);
 
   // const [visible, setVisible] = useState(false); // Always call hooks at the top of the function.
   // const [currentTheme, setCurrentTheme] = useState("light");
@@ -72,11 +76,19 @@ const currentTheme = useSelector(selectTheme).activeTheme;
         <Box>
           <Container>
             <Grid container spacing={2} direction="row" justifyContent="center">
-              {movies ? movies.map((movie) => (
-                <Grid size={{ xl: 4, md: 4, xs: 12 }}>
-                  <CustomCard name={movie.name} image={movie.img} description={movie.desc} />
-                </Grid>
-              )) : <></>}
+              {movies ? (
+                movies.map((movie) => (
+                  <Grid size={{ xl: 4, md: 4, xs: 12 }}>
+                    <CustomCard
+                      name={movie.name}
+                      image={movie.img}
+                      description={movie.desc}
+                    />
+                  </Grid>
+                ))
+              ) : (
+                <></>
+              )}
             </Grid>
           </Container>
           {/* <Button onClick={() => setVisible(!visible)}>Toggle</Button>
