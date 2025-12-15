@@ -11,10 +11,8 @@ const themeSlice = createSlice({
   reducers: {
     getActiveTheme: (state) => {
       const cookieData = cookies.getAll();
-
-      state.activeTheme == cookieData?.activeTheme ?? "light"; 
-
-    //   state.activeTheme == state.activeTheme ?? "light"; // Can also be written as state.activeTheme ? state.activeTheme : "light"
+      state.activeTheme = cookieData?.activeTheme ?? "light"; // Can also be written as cookieData.activeTheme ? cookieData.activeTheme : "light"
+      //   state.activeTheme == state.activeTheme ?? "light";
     },
     toggleTheme: (state) => {
       state.activeTheme = state.activeTheme === "light" ? "dark" : "light";
