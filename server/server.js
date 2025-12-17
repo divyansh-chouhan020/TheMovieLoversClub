@@ -1,5 +1,5 @@
 const express = require("express"); // npm i express
-const mongoose = require("mongoose"); //npm i mongoose
+const mongoose = require("mongoose"); // npm i mongoose
 require("dotenv").config(); // Load environment variables. Make sure .env is in .gitignore
 
 const port = process.env.PORT || 5001;
@@ -21,7 +21,7 @@ mongoose
 require("./models/Movie");
 
 // Routes
-require("./routes/movieRoutes")(app);
+require("./routes/movieRoutes")(app); // To Learn CRUD Oprations
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

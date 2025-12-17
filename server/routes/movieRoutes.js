@@ -4,6 +4,7 @@ const Movie = mongoose.model("movies");
 // const movies = require("../data/movies")
 
 module.exports = (app) => {
+  // Add New Movie
   app.post("/api/v1/movie/add", async (req, res) => {
     console.log("ADD NEW MOVIE");
     const { name, image, description } = req.body;
